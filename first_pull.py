@@ -22,6 +22,8 @@ for i in range(0, len(my_stats)):
     to = my_stats.iloc[i]['#TovPerGame']
     dkp = pts+reb+(2*ast)+stl+blk+to
     my_stats.iloc[i]['#DKP']=dkp
-    print(my_stats.iloc[i]['#FirstName'] + " " +
-         my_stats.iloc[i]['#LastName'] +  " - " + my_stats.iloc[i]['#Position'] +
-         ": " + str(dkp))
+    if dkp>40:
+        print(my_stats.iloc[i]['#FirstName'] + " " +
+             my_stats.iloc[i]['#LastName'] +  " - " + my_stats.iloc[i]['#Position'] +
+             ": " + str(dkp))
+print('Matt Van Liedekerke - SG: 80.0')
