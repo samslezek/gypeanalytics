@@ -1,0 +1,18 @@
+Two Approaches: 
+
+Short-Term:
+	1. Get online predictions as a base model
+	2. Tinker with our data and enhance predictions (e.g. two players on same team, etc.) 
+	3. Roughly optimize 
+	3. Have [Vandy] curate
+
+Long-Term: 
+	1. Optimize using 2016-17 set
+
+Side Project:
+	-How do websites project ownership %s? 
+
+
+Right Now:
+	-Learn beautifulsoup and pull spreads
+	-add one column "is_backtoback"

@@ -5,7 +5,7 @@ import base64
 import requests
 
 #pull the csv with every game log from 2017
-my_full_stats = pd.read_csv('full_2017.csv')
+my_full_stats = pd.read_csv('data/201617_full_game_logs.csv')
 
 # print(my_full_stats.columns)
 # Index(['GID', 'First  Last', 'Date', 'Team', 'Opp', 'H/A', 'GameID',
