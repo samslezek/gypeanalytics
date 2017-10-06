@@ -4,7 +4,7 @@ import numpy as np
 import base64
 import requests
 
-my_full_stats = pd.read_csv('nbastats.csv')
+my_full_stats = pd.read_csv('data/201617_player_stats.csv')
 my_stats = my_full_stats[['#LastName','#FirstName','#Position',
                         "#PtsPerGame", "#RebPerGame", '#AstPerGame',
                         '#StlPerGame', '#BlkPerGame', '#TovPerGame']]

@@ -6,8 +6,6 @@ import csv
 import os
 import re
 
-print('hello')
-
 # # Pull the csv with every game log from 2017
 # my_full_stats = pd.read_csv('full_2017.csv') 
 
