@@ -9,48 +9,67 @@ import json
 from selenium import webdriver
 import pandas as pd
 import numpy as np
-
-# For the below line, you need to install chromedriver using Homebrew
+from pydfs_lineup_optimizer import Site, Sport, get_optimizer
+# To run this, you need to install chromedriver using Homebrew
 # Get Homebrew from brew.sh, then in your terminal type brew install chromedriver
+counter=0
 
+# def get_position(position,counter):
+# 	# Open a Chrome browser for rotogrinders using selenium
+# 	browser = webdriver.Chrome()
+# 	browser.get("https://rotogrinders.com/projected-stats/nfl-" + position + "?site=draftkings")
+# 	soup = bs(browser.page_source, "html.parser")
+# 	# Get player names and put in all_players
+# 	players = soup.find_all('a', class_='player-popup')
+# 	all_players=[]
+# 	for player in players:
+# 		all_players.append(player.string)
+# 	# Get player point projections and put in all_projections
+# 	projection_parent = soup.find('div', attrs={"data-title": "Fantasy Points"}).parent
+# 	player_projections = projection_parent.findChildren()
+# 	player_projections=player_projections[2:len(player_projections)]
+# 	all_projections=[]
+# 	for projection in player_projections:
+# 		all_projections.append(projection.string)
+# 	# Get player salaries and put in all_salaries
+# 	salary_parent_div=soup.find_all('div', text=re.compile(r'/*\$\d\.\dK*'))
+# 	all_salaries = []
+# 	for salary in salary_parent_div:
+# 		salary_number = float(salary.text[1:len(salary.text)-1])*1000
+# 		all_salaries.append(salary_number)
+# 	# Add all data to the players_df DataFrame (created below)
+# 	for i in range(0,len(all_projections)):
+# 		my_player=([all_players[i],position_lookup[position],'team',all_salaries[i],all_projections[i]])
+# 		players_df.loc[counter]=my_player
+# 		counter+=1
 
-def get_position(position):
-	browser = webdriver.Chrome()
-	browser.get("https://rotogrinders.com/projected-stats/nfl-" + position + "?site=draftkings")
-	soup = bs(browser.page_source, "html.parser")
-	# Get player names
-	players = soup.find_all('a', class_='player-popup')
-	all_players=[]
-	for player in players:
-		all_players.append(player.string)
-	# Get player point projections
-	projection_parent = soup.find('div', attrs={"data-title": "Fantasy Points"}).parent
-	player_projections = projection_parent.findChildren()
-	player_projections=player_projections[2:len(player_projections)]
-	all_projections=[]
-	for projection in player_projections:
-		all_projections.append(projection.string)
-	# Get player salaries
-	salary_parent_div=soup.find_all('div', text=re.compile(r'/*\$\d\.\dK*'))
-	all_salaries = []
-	for salary in salary_parent_div:
-		all_salaries.append(salary.text)
-	# Add all data to the player_data list
-	for i in range(0,len(all_projections)):
-		print("Appending " + all_players[i])
-		my_player=([all_players[i],position,all_salaries[i],all_projections[i]])
-		#players_df.append(my_player)
-		print("Appended.")
-		print(players_df)
+# # Create the dataframe to store the player data
+# players_df = pd.DataFrame(
+# 	columns=[
+# 		'Name',
+# 		'Position',
+# 		'teamAbbrev',
+# 		'Salary',
+# 		'AvgPointsPerGame'
+# 	]
+# )
+# positions=['qb','rb','wr','te','defense']
+# position_lookup={
+# 	'qb':'QB',
+# 	'rb':'RB',
+# 	'wr':'WR',
+# 	'te':'TE',
+# 	'defense':'DST'
+# }
+# for position in positions:
+# 	get_position(position,len(players_df))
+# print(players_df)
 
-# Create the dataframe to store the player data
-players_df = pd.DataFrame(
-	columns=[
-		'Player',
-		'Position',
-		'Salary',
-		'Projection'
-	]
-)
-get_position('qb')
-print(players_df)
+# players_df.to_csv('data/nfl_rotogrinders_test.csv')
+optimizer = get_optimizer(Site.DRAFTKINGS, Sport.FOOTBALL)
+optimizer.load_players_from_CSV('data/nfl_rotogrinders_test.csv')
+player = optimizer.get_player_by_name('Chris Thompson')
+optimizer.remove_player(player)
+lineup_generator = optimizer.optimize(10)
+for lineup in lineup_generator:
+	print(lineup)
