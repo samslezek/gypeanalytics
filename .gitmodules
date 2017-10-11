@@ -1,0 +1,3 @@
+[submodule "pydfs-lineup-optimizer"]
+	path = pydfs-lineup-optimizer
+	url = git@github.com:gregory-lyons/pydfs-lineup-optimizer.git

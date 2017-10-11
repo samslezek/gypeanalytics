@@ -1,8 +1,12 @@
-from ohmysportsfeedspy import MySportsFeeds
 import pandas as pd
 import numpy as np
 import base64
 import requests
+
+# add submodule to sys.path so we can import it
+import sys, os
+cwd = os.path.abspath(os.path.dirname(__file__))
+sys.path.append(os.path.join(cwd, 'pydfs-lineup-optimizer'))
 from pydfs_lineup_optimizer import Site, Sport, get_optimizer
 
 #pull the csv with every game log from 2017
