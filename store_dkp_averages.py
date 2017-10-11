@@ -37,4 +37,3 @@ for player in dkp_dict:
 	dkp_dict[player]=average
 
 print(dkp_dict)
-
