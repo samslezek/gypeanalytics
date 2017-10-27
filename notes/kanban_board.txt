@@ -1,0 +1,15 @@
+Linear Regression Model:
+1. Create a working linear model for example (done in linreg_test.py)
+2. Get the following into our dataset
+	-Season average DKP (up to the date of the game log)
+	-Last 5 games average DKP (before date of game log)
+	-Spread of the game
+	-Whether or not the game is a back to back
+	-Opponent’s average points per game allowed (up to the date of the game log)
+3. Adjust the linear regression to run off the variables above
+
+Beginning to look at a separate linear regression for used %: 
+1. Pull all player used % statistics and incorporate into existing CSV
+
+Organization: 
+1. Separate the tasks of pulling (and later creating) projections and optimizing lineups into separate files. 

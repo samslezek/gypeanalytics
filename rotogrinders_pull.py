@@ -65,11 +65,26 @@ counter=0
 # 	get_position(position,len(players_df))
 # print(players_df)
 
-# players_df.to_csv('data/nfl_rotogrinders_test.csv')
+# players_df.to_csv('data/2017_w7_nfl_roto.csv')
 optimizer = get_optimizer(Site.DRAFTKINGS, Sport.FOOTBALL)
-optimizer.load_players_from_CSV('data/nfl_rotogrinders_test.csv')
-player = optimizer.get_player_by_name('Chris Thompson')
-optimizer.remove_player(player)
+optimizer.load_players_from_CSV('data/2017_w7_nfl_roto.csv')
+cuts = [
+	'Chris Thompson',
+	'Kareem Hunt',
+	'Evan Engram',
+	'JuJu Smith-Schuster',
+	'Devonta Freeman',
+	'Jay Ajayi'
+]
+for cut in cuts:
+		player = optimizer.get_player_by_name(cut)
+		optimizer.remove_player(player)
+bids = [
+	'Alshon Jeffery'
+]
+for bid in bids:
+		player = optimizer.get_player_by_name(bid)
+		optimizer.add_player_to_lineup(player)
 lineup_generator = optimizer.optimize(10)
 for lineup in lineup_generator:
 	print(lineup)

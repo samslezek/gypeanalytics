@@ -52,7 +52,7 @@ def get_players():
 	for team in player_teams:
 		all_teams.append(team.string)
 	# Add all data to the players_df DataFrame (created below)
-	for i in range(0,len(all_projections)):
+	for i in range(0,len(all_projections)-1):
 		my_player=([all_players[i],all_positions[i],all_teams[i],all_salaries[i],all_projections[i]])
 		players_df.loc[i]=my_player
 	browser.close()
@@ -69,20 +69,28 @@ players_df = pd.DataFrame(
 	]
 )
 
-# get_players()
+#get_players()
 
 
-# players_df.to_csv('data/nba_rotogrinders_test.csv')
+#players_df.to_csv('data/2017_10_18_rotogrinders_pull.csv')
 optimizer = get_optimizer(Site.DRAFTKINGS, Sport.BASKETBALL)
-optimizer.load_players_from_CSV('data/nba_rotogrinders_test.csv')
+optimizer.load_players_from_CSV('data/2017_10_18_rotogrinders_pull.csv')
 bids = [
+	'Marcus Smart',
+	'Kemba Walker',
 	'Jaylen Brown',
-	'James Harden'
+	'Robert Covington',
+	'Andre Drummond'
 ]
 cuts = [
-	'Ryan Anderson',
-	'LeBron James',
-	'Kevin Love'
+	'Jason Smith',
+	'Dario Saric',
+	'Chris Paul',
+	'Trevor Ariza',
+	'James Harden',
+	'Al Horford',
+	'Kelly Olynyk',
+	'Marqueese Chriss',
 ]
 
 for guy in bids:
