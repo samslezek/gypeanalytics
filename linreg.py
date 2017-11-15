@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Pull CSV with all (non-zero) game logs
-my_full_stats = pd.read_csv('data/2017_stats.csv')
+my_full_stats = pd.read_csv('data/master_stats_file.csv')
 
 #  my_full_stats.columns: 
 #        ['GID', 'First  Last', 'Date', 'Team', 'Opp', 'H/A', 'GameID',
